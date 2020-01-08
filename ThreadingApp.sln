@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingApp", "ThreadingApp\ThreadingApp.csproj", "{FC902F27-9B64-4789-BCC7-B7569BE18DB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingAppTests", "ThreadingAppTests\ThreadingAppTests.csproj", "{3C7EE60E-1846-488A-AC26-C5D5DC206653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC902F27-9B64-4789-BCC7-B7569BE18DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC902F27-9B64-4789-BCC7-B7569BE18DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC902F27-9B64-4789-BCC7-B7569BE18DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC902F27-9B64-4789-BCC7-B7569BE18DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C7EE60E-1846-488A-AC26-C5D5DC206653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7EE60E-1846-488A-AC26-C5D5DC206653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7EE60E-1846-488A-AC26-C5D5DC206653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7EE60E-1846-488A-AC26-C5D5DC206653}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB352879-1F12-4D07-83B6-563A75D71709}
+	EndGlobalSection
+EndGlobal
