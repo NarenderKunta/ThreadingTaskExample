@@ -16,7 +16,7 @@ namespace ThreadingApp.ViewModel
         //TaskScheduler uiScheduler;
         private static Queue<Action> MyQueue = new Queue<Action>();
         private static EventWaitHandle newtaskavailable = new AutoResetEvent(false);
-        List<Action> TaskList = new List<Action>();
+        public List<Action> TaskList = new List<Action>();
         private static readonly object queuelock = new object();
         private bool FinishedTask1;
         private bool FinishedTask2;
@@ -97,49 +97,54 @@ namespace ThreadingApp.ViewModel
             set { SetProperty(ref _taskNameList, value); RaisePropertyChanged(); }
         }
 
+        private string _taskNameList1;
+
+        public string TaskNameList1
+        {
+            get { return _taskNameList1; }
+            set { SetProperty(ref _taskNameList1, value); RaisePropertyChanged(); }
+        }
 
 
-        public ICommand chkBox1Checked { get; set; }
-        public ICommand chkBox2Checked { get; set; }
-        public ICommand chkBox3Checked { get; set; }
-        public ICommand StartTask { get; set; }
-        public ICommand AddTask { get; set; }
-        public ICommand ClearTask { get; set; }
+        public ICommand ButtonTask1Command { get; set; }
+        public ICommand ButtonTask2Command { get; set; }
+        public ICommand ButtonTask3Command { get; set; }
+        public ICommand StartTaskCommand { get; set; }
+        public ICommand AddTaskCommand { get; set; }
+        public ICommand ClearTaskCommand { get; set; }
 
 
         public TaskViewModel()
         {
-            BtnTask1 = false;
-            BtnTask2 = false;
-            BtnTask3 = false;
-            chkBox1Checked = new DelegateCommand(RunTask1);
-            chkBox2Checked = new DelegateCommand(RunTask2);
-            chkBox3Checked = new DelegateCommand(RunTask3);
-            StartTask = new DelegateCommand(ButtonStartTaskClicked);
-            AddTask = new DelegateCommand(ButtonAddTaskClicked);
-            ClearTask = new DelegateCommand(ButtonClearTaskClicked);
+            ButtonTask1Command = new DelegateCommand(RunTask1);
+            ButtonTask2Command = new DelegateCommand(RunTask2);
+            ButtonTask3Command = new DelegateCommand(RunTask3);
+            StartTaskCommand = new DelegateCommand(ExecuteStartTask);
+            AddTaskCommand = new DelegateCommand(ExecuteAddTask);
+            ClearTaskCommand = new DelegateCommand(ExecuteClearTask);
             //TaskNameList = new List<string>();
         }
 
         public void RunTask1()
         {
             TaskList.Add(Task1);
-            TaskNameList = "Task 1 Added.";
+            TaskNameList += Environment.NewLine;
+            TaskNameList += "Task 1 Added.";
         }
         public void RunTask2()
         {
-            //TaskName = Environment.NewLine;
-            TaskNameList = "Task 2 Added.";
+            TaskNameList += Environment.NewLine;
+            TaskNameList += "Task 2 Added.";
             TaskList.Add(Task2);
         }
         public void RunTask3()
         {
-            //TaskName = Environment.NewLine;
-            TaskNameList = "Task 3 Added.";
+            TaskNameList += Environment.NewLine;
+            TaskNameList += "Task 3 Added.";
             TaskList.Add(Task3);
         }
 
-        private void ButtonAddTaskClicked()
+        public void ExecuteAddTask()
         {
             foreach (var item in TaskList)
             {
@@ -147,7 +152,7 @@ namespace ThreadingApp.ViewModel
             }
             ExecuteTasks();
         }
-        private void ButtonStartTaskClicked()
+        private void ExecuteStartTask()
         {
             MyQueue.Enqueue(Task1);
             MyQueue.Enqueue(Task2);
@@ -155,7 +160,7 @@ namespace ThreadingApp.ViewModel
             ExecuteTasks();
         }
 
-        private void ButtonClearTaskClicked()
+        private void ExecuteClearTask()
         {
             CurrentProgress1 = CurrentProgress2 = CurrentProgress3 = 0;
             FinishedTask1 = FinishedTask2 = FinishedTask3 = false;
@@ -165,9 +170,9 @@ namespace ThreadingApp.ViewModel
         {
             if (!FinishedTask1)
             {
-                FinishedTask1 = true;
-                CurrentProgress1 = 0;
-                PrepareTask1();
+                this.FinishedTask1 = true;
+                this.CurrentProgress1 = 0;
+                this.PrepareTask1();
             }
         }
 
@@ -197,19 +202,14 @@ namespace ThreadingApp.ViewModel
               {
                   for (int i = 0; i <= 100; i++)
                   {
-                      Thread.Sleep(50); //simulateWork, do something with the data received
+                      Thread.Sleep(50); 
                       CurrentProgress1 = i;
                   }
               }).Wait();
-            //var task = new Task(() =>
-            //{
-            //    for (int i = 0; i <= 100; i++)
-            //    {
-            //        Thread.Sleep(200);
-            //        CurrentProgress1 = i;
-            //    }
-            //});
-            //task.Start();
+            CurrentProgress1 = 0;
+            TaskNameList1 += Environment.NewLine;
+            TaskNameList1 += "Task 1 is Completed.";
+          
         }
 
         public void PrepareTask2()
@@ -219,19 +219,16 @@ namespace ThreadingApp.ViewModel
              {
                  for (int i = 0; i <= 100; i++)
                  {
-                     Thread.Sleep(50); //simulateWork, do something with the data received
+                     Thread.Sleep(50); 
                      CurrentProgress2 = i;
                  }
              }).Wait();
-            //var task = new Task(() =>
-            // {
-            //     for (int i = 0; i <= 100; i++)
-            //     {
-            //         Thread.Sleep(500); 
-            //        CurrentProgress2 = i;
-            //     }
-            // });
-            //task.Start();
+
+            CurrentProgress2 = 0;
+            TaskNameList1 += Environment.NewLine;
+            TaskNameList1 += "Task 2 is Completed.";
+
+           
         }
 
         public void PrepareTask3()
@@ -241,19 +238,15 @@ namespace ThreadingApp.ViewModel
              {
                  for (int i = 0; i <= 100; i++)
                  {
-                     Thread.Sleep(50); //simulateWork, do something with the data received
+                     Thread.Sleep(50); 
                      CurrentProgress3 = i;
                  }
              }).Wait();
-            //var task = new Task(() =>
-            //{
-            //    for (int i = 0; i <= 100; i++)
-            //    {
-            //        Thread.Sleep(500); 
-            //        CurrentProgress3 = i;
-            //    }
-            //});
-            //task.Start();
+
+            CurrentProgress3 = 0;
+            TaskNameList1 += Environment.NewLine;
+            TaskNameList1 += "Task 3 is Completed.";
+            
         }
 
         public async void ExecuteTasks()
