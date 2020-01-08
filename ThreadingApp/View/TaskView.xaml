@@ -18,13 +18,11 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="559"/>
             <ColumnDefinition Width="367"/>
-
         </Grid.ColumnDefinitions>
 
         <Button x:Name="Task1" Content="Task1" Command="{Binding ButtonTask1Command,Mode=TwoWay}" Margin="27,0,372,0" ></Button>
         <Button x:Name="Task2" Margin="211,0,189,0" Command="{Binding ButtonTask2Command}" Content="Task2"></Button>
         <Button x:Name="Task3" Margin="394,0,10,0" Command="{Binding ButtonTask3Command}" Content="Task3"></Button>
-
         <Label Grid.Row="1" Content="Task1"></Label>
        
         <ProgressBar Value="{Binding CurrentProgress1, Mode=OneWay}" Visibility="Visible" VerticalAlignment="Center" Grid.Row="1"
@@ -35,8 +33,6 @@
 
         <ProgressBar Value="{Binding CurrentProgress3, Mode=OneWay}" Visibility="Visible" VerticalAlignment="Center" Grid.Row="3"
             Height="46" Minimum="0" Maximum="100" Name="Progressbar3" Margin="27,30,248,90" />
-
-
 
         <Label Grid.Row="2" Content="Task2"></Label>
         <TextBox x:Name="Task" Grid.Row="2" Grid.Column="1"
@@ -59,8 +55,7 @@
                 VerticalAlignment="Top"
                 Width="262"  />
 
-        <Label Grid.Row="3" Content="Task3" Margin="0,80,0,94"/>
-       
+        <Label Grid.Row="3" Content="Task3" Margin="0,80,0,94"/>       
         <Button Grid.Column="1" x:Name="btnStartTask" Command="{Binding StartTaskCommand}" Content="Run All Tasks" Margin="29,5,186,5" RenderTransformOrigin="0.474,0.663"/>
         <Button Grid.Column="1" x:Name="btnAddTask" Command="{Binding AddTaskCommand}" Content="Run Selected Task" Margin="205,5,10,5" RenderTransformOrigin="0.473,1.064"/>
         <Button Grid.Row="1" Grid.Column="1" x:Name="btnCleartask" Command="{Binding ClearTaskCommand}" Content="Clear Tasks" Margin="29,10,186,50"/>
